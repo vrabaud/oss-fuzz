@@ -15,12 +15,11 @@
 ################################################################################
 
 FROM gcr.io/oss-fuzz-base/base-builder
-RUN apt-get update && apt-get install -y build-essential cmake pkg-config
-RUN git clone --depth 1 https://github.com/opencv/opencv.git opencv
+RUN apt-get update && apt-get install -y build-essential cmake pkg-config libjpeg-turbo8-dev libopenjp2-7-dev
+RUN git clone --branch fuzztest --depth 1 https://github.com/vrabaud/opencv.git opencv
 WORKDIR opencv/
 
 COPY build.sh $SRC/
-COPY *.cc *.h $SRC/
 # This is to fix Fuzz Introspector build by using LLVM old pass manager
 # re https://github.com/ossf/fuzz-introspector/issues/305
 ENV OLD_LLVMPASS 1

@@ -15,18 +15,13 @@ auto_ccs:
 sanitizers:
   - address
   - undefined
-# Disabled MSAN because of https://github.com/google/oss-fuzz/issues/6294
-#  - memory
+  - memory:
+      experimental: True
 
 labels:
   imdecode_fuzzer:
     - sundew
   imread_fuzzer:
     - sundew
-main_repo: 'https://github.com/opencv/opencv.git'
 
-fuzzing_engines:
-  - afl
-  - honggfuzz
-  - libfuzzer
-
+main_repo: 'https://github.com/vrabaud/opencv.git'
